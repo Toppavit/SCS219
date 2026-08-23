@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\Product; // Essential: Don't forget to import Product!
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+Route::get('/product', function () {
+    $products = Product::all();
+    return response()->json($products);
+});

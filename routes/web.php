@@ -26,3 +26,9 @@ Route::get('query/orm', function () {
 Route::get('product/form', function () {
     // Left empty as placeholder
 })->name("product.form");
+
+
+
+Route::get('barchart', function () {
+    return view('barchart');
+})->name('barchart');
