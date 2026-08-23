@@ -1,35 +1,28 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Product;
+use Illuminate\Support\Facades\DB;
 
-Route::get('/', function () {
-    return view('welcome');
+// 1. Raw SQL Query Route
+Route::get('query/sql', function () {
+    $products = DB::select("SELECT * FROM products");
+    return view('query-test', compact('products'));
 });
 
-Route::get('/active/index', function () {
-    return view('active.index');
-})->name('index');
+// 2. Query Builder Route
+Route::get('query/builder', function () {
+    $products = DB::table('products')->get();
+    return view('query-test', compact('products'));
+});
 
-Route::get('/active/about', function () {
-    return view('active.about');
-})->name('about');
+// 3. Eloquent ORM Route
+Route::get('query/orm', function () {
+    $products = Product::get();
+    return view('query-test', compact('products'));
+});
 
-Route::get('/active/services', function () {
-    return view('active.services');
-})->name('services');
-
-Route::get('/active/portfolio', function () {
-    return view('active.portfolio');
-})->name('portfolio');
-
-Route::get('/active/team', function () {
-    return view('active.team');
-})->name('team');
-
-Route::get('/active/blog', function () {
-    return view('active.blog');
-})->name('blog');
-
-Route::get('/active/contact', function () {
-    return view('active.contact');
-})->name('contact');
+// Helper Route
+Route::get('product/form', function () {
+    // Left empty as placeholder
+})->name("product.form");
