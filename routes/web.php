@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\WeightLogController; 
+
 
 // 1. Raw SQL Query Route
 Route::get('query/sql', function () {
@@ -32,3 +34,10 @@ Route::get('product/form', function () {
 Route::get('barchart', function () {
     return view('barchart');
 })->name('barchart');
+
+
+Route::get('/', function () {
+    return redirect()->route('weights.index');
+});
+
+Route::resource('weights', WeightLogController::class)->except(['create', 'show', 'edit']);
