@@ -15,6 +15,7 @@
             <a class="navbar-brand fw-bold" href="{{ route('weights.index') }}">
                 <i class="fa-solid fa-weight-scale me-2"></i>Weight Tracker
             </a>
+            <a class="nav-link text-white" href="{{ route('about-me') }}">About Me</a>
         </div>
     </nav>
 

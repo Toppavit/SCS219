@@ -5,6 +5,8 @@ use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\WeightLogController; 
 
+Route::view('/about-me', 'about-me')->name('about-me');
+
 
 // 1. Raw SQL Query Route
 Route::get('query/sql', function () {

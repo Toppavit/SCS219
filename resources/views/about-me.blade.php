@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me | SCS219</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; background: #f5f7fb; color: #17263c; font-family: system-ui, sans-serif; line-height: 1.6; }
+        a { color: #145ac6; text-underline-offset: 4px; }
+        a:focus-visible { outline: 3px solid #145ac6; outline-offset: 5px; }
+        .navigation { background: #0d6efd; color: white; }
+        .nav-inner { max-width: 960px; margin: auto; padding: 20px 24px; display: flex; justify-content: space-between; gap: 24px; align-items: center; }
+        .navigation a { color: white; }
+        .brand { font-weight: 700; letter-spacing: .04em; }
+        main { max-width: 960px; margin: 64px auto; padding: 0 24px; }
+        .eyebrow { color: #466286; font-size: .8rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+        h1 { margin: 8px 0; font-size: clamp(2rem, 6vw, 3.25rem); line-height: 1.2; }
+        .intro { margin: 12px 0 32px; color: #53647c; }
+        .profile { display: grid; grid-template-columns: 240px 1fr; gap: 40px; padding: 40px; background: white; border: 1px solid #e0e6ef; border-radius: 20px; box-shadow: 0 12px 36px #17263c08; }
+        .portrait, .photo-placeholder { width: 100%; aspect-ratio: 1; border-radius: 16px; }
+        .portrait { object-fit: cover; }
+        .photo-placeholder { display: grid; place-content: center; gap: 12px; text-align: center; background: #edf3fc; color: #526b90; border: 1px dashed #b3c5df; }
+        .photo-placeholder svg { width: 72px; height: 72px; margin: auto; }
+        h2 { margin: 0 0 24px; font-size: 1.4rem; }
+        dl { margin: 0; }
+        dt { font-size: .85rem; color: #53647c; margin-top: 20px; }
+        dd { margin: 4px 0 0; font-size: 1.2rem; overflow-wrap: anywhere; }
+        .pending { color: #6a7586; }
+        footer { margin-top: 28px; color: #64748b; font-size: .85rem; }
+        @media (max-width: 640px) {
+            main { margin-top: 36px; }
+            .profile { grid-template-columns: 1fr; padding: 24px; gap: 28px; }
+            .portrait, .photo-placeholder { max-width: 240px; margin: auto; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navigation" aria-label="เมนูหลัก">
+        <div class="nav-inner">
+            <span class="brand">SCS219 / PROJECT</span>
+            <a href="{{ route('weights.index') }}">กลับหน้าหลัก</a>
+        </div>
+    </nav>
+    <main>
+        <div class="eyebrow">Student profile</div>
+        <h1>เกี่ยวกับฉัน <span lang="en">/ About Me</span></h1>
+        <p class="intro">ข้อมูลส่วนตัวสำหรับรายวิชา SCS219 การพัฒนาโปรแกรมประยุกต์บนเว็บสำหรับองค์กร</p>
+        <section class="profile" aria-labelledby="profile-heading">
+            @if (config('profile.photo'))
+                <img class="portrait" src="{{ asset(config('profile.photo')) }}" alt="รูปภาพของ {{ config('profile.name') }}" width="240" height="240">
+            @else
+                <div class="photo-placeholder" role="img" aria-label="ยังไม่ได้เพิ่มรูปภาพนักศึกษา">
+                    <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+                        <circle cx="40" cy="26" r="13" />
+                        <path d="M15 68v-5a25 25 0 0 1 50 0v5" />
+                    </svg>
+                    <span>รอเพิ่มรูปภาพ</span>
+                </div>
+            @endif
+            <div>
+                <h2 id="profile-heading">ข้อมูลนักศึกษา</h2>
+                <dl>
+                    <dt>ชื่อ–นามสกุล / Full name</dt>
+                    <dd @class(['pending' => ! config('profile.name')])>{{ config('profile.name') ?: 'รอเพิ่มชื่อ–นามสกุล' }}</dd>
+                    <dt>รหัสนักศึกษา / Student ID</dt>
+                    <dd @class(['pending' => ! config('profile.student_id')])>{{ config('profile.student_id') ?: 'รอเพิ่มรหัสนักศึกษา' }}</dd>
+                    <dt>รายวิชา / Course</dt>
+                    <dd>SCS219</dd>
+                </dl>
+            </div>
+        </section>
+        <footer>SCS219 · About Me</footer>
+    </main>
+</body>
+</html>
