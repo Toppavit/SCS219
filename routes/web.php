@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\WeightLogController; 
 
 Route::view('/about-me', 'about-me')->name('about-me');
+Route::view('/welcome', 'welcome')->name('welcome');
 
 
 // 1. Raw SQL Query Route

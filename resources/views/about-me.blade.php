@@ -70,7 +70,7 @@
                 </dl>
             </div>
         </section>
-        <footer>SCS219 · About Me</footer>
+        <footer>SCS219 · About Me · <a href="{{ route('welcome') }}">Laravel Welcome</a></footer>
     </main>
 </body>
 </html>
