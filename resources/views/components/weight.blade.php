@@ -15,7 +15,22 @@
             <a class="navbar-brand fw-bold" href="{{ route('weights.index') }}">
                 <i class="fa-solid fa-weight-scale me-2"></i>Weight Tracker
             </a>
-            <a class="nav-link text-white" href="{{ route('about-me') }}">About Me</a>
+            <div class="d-flex align-items-center gap-3">
+                <a class="nav-link text-white" href="{{ route('about-me') }}">About Me</a>
+                @auth
+                    <span class="text-white-50 small">{{ Auth::user()->name }}</span>
+                    <form method="POST" action="{{ route('logout') }}" class="m-0">
+                        @csrf
+                        <button type="submit" class="btn btn-sm btn-outline-light">
+                            <i class="fa-solid fa-right-from-bracket me-1"></i>Logout
+                        </button>
+                    </form>
+                @else
+                    <a class="btn btn-sm btn-light" href="{{ route('login') }}">
+                        <i class="fa-solid fa-right-to-bracket me-1"></i>Login
+                    </a>
+                @endauth
+            </div>
         </div>
     </nav>
 

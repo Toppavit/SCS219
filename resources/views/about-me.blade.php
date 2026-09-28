@@ -27,6 +27,13 @@
         dt { font-size: .85rem; color: #53647c; margin-top: 20px; }
         dd { margin: 4px 0 0; font-size: 1.2rem; overflow-wrap: anywhere; }
         .pending { color: #6a7586; }
+        .works { margin-top: 40px; }
+        .works ul { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+        .works a { display: block; padding: 16px 20px; background: white; border: 1px solid #e0e6ef; border-radius: 12px; text-decoration: none; }
+        .works a:hover { border-color: #145ac6; }
+        .works small { display: block; color: #64748b; }
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-links button { background: none; border: 1px solid white; border-radius: 6px; color: white; padding: 4px 12px; font: inherit; cursor: pointer; }
         footer { margin-top: 28px; color: #64748b; font-size: .85rem; }
         @media (max-width: 640px) {
             main { margin-top: 36px; }
@@ -39,7 +46,17 @@
     <nav class="navigation" aria-label="เมนูหลัก">
         <div class="nav-inner">
             <span class="brand">SCS219 / PROJECT</span>
-            <a href="{{ route('weights.index') }}">กลับหน้าหลัก</a>
+            <div class="nav-links">
+                <a href="{{ route('weights.index') }}">กลับหน้าหลัก</a>
+                @auth
+                    <form method="POST" action="{{ route('logout') }}" style="margin:0">
+                        @csrf
+                        <button type="submit">Logout</button>
+                    </form>
+                @else
+                    <a href="{{ route('login') }}">Login</a>
+                @endauth
+            </div>
         </div>
     </nav>
     <main>
@@ -69,6 +86,16 @@
                     <dd>SCS219</dd>
                 </dl>
             </div>
+        </section>
+        <section class="works" aria-labelledby="works-heading">
+            <h2 id="works-heading">ผลงานที่ผ่านมา <span lang="en">/ Previous work</span></h2>
+            <ul>
+                <li><a href="{{ route('gallery') }}">Gallery<small>EP02 Hero section</small></a></li>
+                <li><a href="{{ route('index') }}">Active Bootstrap<small>EP03 active menu</small></a></li>
+                <li><a href="{{ route('weights.index') }}">Weight Tracker<small>ต้องเข้าสู่ระบบ</small></a></li>
+                <li><a href="{{ route('barchart') }}">Bar Chart<small>Google Charts</small></a></li>
+                <li><a href="{{ url('query/orm') }}">Query Test<small>SQL / Builder / Eloquent</small></a></li>
+            </ul>
         </section>
         <footer>SCS219 · About Me · <a href="{{ route('welcome') }}">Laravel Welcome</a></footer>
     </main>
