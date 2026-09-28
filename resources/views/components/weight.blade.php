@@ -18,6 +18,7 @@
             <div class="d-flex align-items-center gap-3">
                 <a class="nav-link text-white" href="{{ route('about-me') }}">About Me</a>
                 @auth
+                    <a class="nav-link text-white" href="{{ route('leaves.index') }}">Leave</a>
                     <span class="text-white-50 small">{{ Auth::user()->name }}</span>
                     <form method="POST" action="{{ route('logout') }}" class="m-0">
                         @csrf

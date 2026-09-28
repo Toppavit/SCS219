@@ -93,6 +93,7 @@
                 <li><a href="{{ route('gallery') }}">Gallery<small>EP02 Hero section</small></a></li>
                 <li><a href="{{ route('index') }}">Active Bootstrap<small>EP03 active menu</small></a></li>
                 <li><a href="{{ route('weights.index') }}">Weight Tracker<small>ต้องเข้าสู่ระบบ</small></a></li>
+                <li><a href="{{ route('leaves.index') }}">Leave Management<small>Extra credit · Case Study 5</small></a></li>
                 <li><a href="{{ route('barchart') }}">Bar Chart<small>Google Charts</small></a></li>
                 <li><a href="{{ url('query/orm') }}">Query Test<small>SQL / Builder / Eloquent</small></a></li>
             </ul>

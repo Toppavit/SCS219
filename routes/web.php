@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\LeaveApprovalController;
+use App\Http\Controllers\LeaveRequestController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WeightLogController;
 use App\Models\Product;
@@ -61,6 +63,16 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::resource('weights', WeightLogController::class)->except(['create', 'show', 'edit']);
+
+    // Extra credit: Case Study 5 - Leave Management
+    Route::resource('leaves', LeaveRequestController::class)
+        ->only(['index', 'create', 'store', 'destroy'])
+        ->parameters(['leaves' => 'leave']);
+
+    Route::middleware('can:manage-leaves')->group(function () {
+        Route::get('/leave-approvals', [LeaveApprovalController::class, 'index'])->name('leaves.approvals');
+        Route::patch('/leave-approvals/{leave}', [LeaveApprovalController::class, 'update'])->name('leaves.review');
+    });
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
